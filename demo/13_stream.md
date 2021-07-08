@@ -3,7 +3,7 @@ title: 3、流stream模块
 order: 13
 ---
 #### 参考资料
-[官网](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html)
+[官网](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html)  
 [掘金资料681赞](https://juejin.cn/post/6844903891083984910)  
 [掘金资料49赞](https://juejin.cn/post/6934987500540657701)
 #### 定义
@@ -13,7 +13,8 @@ order: 13
 + 文件流
 + process.stdout  
 
-![网络流](https://robin2017.github.io/node-notes/images/net_stream.jpg)
+![网络流](https://robin2017.github.io/node-notes/images/net_stream.jpg)   
+
 
 #### 流类型(按照生产者消费者模式理解)[图片有误，此为标准]
 + 可读：Readable(消费者：学生看黑板)
@@ -43,11 +44,10 @@ order: 13
     + read()
  
 ![常见接口,控制台反了](https://robin2017.github.io/node-notes/images/all_stream.jpg)
-
- 
  #### 使用场景
  + 大文件操作
  + 网络请求
+
  ```
 // fs读取大文件
 const server1 = http.createServer()
