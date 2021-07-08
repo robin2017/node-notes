@@ -4,6 +4,9 @@
 node_modules/
 .eslintcache
 _test_
+_bigData_.file
+_stdin_.file
+_*_.file
 # production
 build/
 dist/
