@@ -20,8 +20,11 @@
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"**/*.{css,scss,less}\"",
     "lint": "npm run eslint && npm run stylelint",
-    "save":"git add . && git commit -m \"auto save\"",
-    "push":"npm run save && git push"
+    "save": "git add . && git commit -m \"auto save\"",
+    "push": "npm run save && git push",
+    "predeploy": "npm run build && git checkout . && node script/copy",
+    "deploy": "gh-pages -d build",
+    "pub": "npm run push && npm run deploy"
   },
   "keywords": [
     "ice",
@@ -29,6 +32,7 @@
     "component"
   ],
   "dependencies": {
+    "gh-pages": "^3.2.3",
     "prop-types": "^15.5.8"
   },
   "devDependencies": {
