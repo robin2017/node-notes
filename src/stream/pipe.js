@@ -29,7 +29,7 @@ const process  = require('process')
 // process.stdout.pipe(fs.createWriteStream('./_stdout_.file'))
 
 // 7、(process.stdout).pipe(服务端网络响应response) [无法中断]
-const server2 = http.createServer()
-server2.on('request',(req,res)=>{
-    process.stdout.pipe(res)
-}).listen(8889)
+// const server2 = http.createServer()
+// server2.on('request',(req,res)=>{
+//     process.stdout.pipe(res)
+// }).listen(8889)
