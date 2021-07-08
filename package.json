@@ -26,6 +26,7 @@
     "deploy": "gh-pages -d build",
     "pub": "npm run push && npm run deploy"
   },
+  "homepage": "https://robin2017.github.io/node-notes",
   "keywords": [
     "ice",
     "react",
