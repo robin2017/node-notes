@@ -1,0 +1,25 @@
+{
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.packageManager": "yarn",
+    "eslint.run":"onSave",
+    "prettier.packageManager": "yarn",
+    "eslint.validate": [
+      "vue",
+      "javascript",
+      "javascriptreact"
+    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "vetur.validation.template": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": false,
+    "files.eol": "\n",
+    "compile-hero.disable-compile-files-on-did-save-code": true
+  }
+  
