@@ -65,7 +65,7 @@ server2.on('request',(req,res)=>{
  ```
 
  #### 3个输入流和3个输出流的9种pipe组合方式
- ![Pipe](https://robin2017.github.io/node-notes/images/pipe_stream.jpg)
+ ![Pipe](https://robin2017.github.io/node-notes/images/pipe_stream.png)
  
  ```
  // 1、(服务端网络请求request).pipe(服务端网络响应response) [待验证]
