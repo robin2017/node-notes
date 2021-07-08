@@ -12,7 +12,7 @@ order: 13
 + 文件流
 + process.stdout  
 
-![网络流](https://net_stream.jpeg)
+![网络流](https://robin2017.github.io/node-notes/images/net_stream.jpg)
 
 #### 流类型
 + 可读：Readable
