@@ -114,7 +114,7 @@ server2.on('request',(req,res)=>{
 // process.stdout.pipe(fs.createWriteStream('./_stdout_.file'))
 
  ```
- ![Post](https://robin2017.github.io/node-notes/images/post_stream.png)
+ ![Post](https://robin2017.github.io/node-notes/images/post_stream.jpg)
 
 
  #### pipe和非pipe方式差别
