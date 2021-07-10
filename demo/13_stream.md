@@ -16,19 +16,25 @@ order: 13
 ![网络流](https://robin2017.github.io/node-notes/images/net_stream.jpg)   
 
 
-#### 流类型(按照生产者消费者模式理解)[图片有误，此为标准]
+#### 流类型(按照生产者消费者模式理解)[图片正确]
+> process.stdin/stdout有时候混了，也可以用，这个特别注意
+> 记忆方法：process.stdin.pipe(process.stdout)
 + 可读：Readable(消费者：学生看黑板)
     + 服务端网络请求request
     + 文件复制源文件
-    + process.stdout
+    + process.stdin  
 + 可写：Writable(生产者：老师写黑板)
     + 服务端网络响应response
     + 文件复制目标文件
-    + process.stdin
+    + process.stdout
+
 
 + 可读可写：Duplex(如net.Socket)
 
 #### 常见接口
++ 实例化
+    + fs.createReadStream(filePath:string):ReadStream
+    + fs.createWriteStream(filePath:string):WriteStream
 + WriteStream
     + on('pipe',cbFun)
     + on('close',cbFun)
@@ -72,7 +78,7 @@ server2.on('request',(req,res)=>{
  ![Pipe](https://robin2017.github.io/node-notes/images/pipe_stream.png)
  
  ```
- // 1、(服务端网络请求request).pipe(服务端网络响应response) [正确，必须为post]
+// 1、(服务端网络请求request).pipe(服务端网络响应response) [正确，必须为post]
 // const server2 = http.createServer()
 // server2.on('request',(req,res)=>{
 //     console.log('req:',req)
@@ -82,8 +88,8 @@ server2.on('request',(req,res)=>{
 // 2、(文件复制源文件).pipe(文件复制目标文件) [正确]
 // fs.createReadStream('_data_.file').pipe(fs.createWriteStream('_copy_.file'))
 
-// 3、(process.stdout).pipe(process.stdin) [正确！！！]
-// process.stdout.pipe(process.stdin)
+// 3、(process.stdin).pipe(process.stdout) [正确！！！]
+// process.stdin.pipe(process.stdout);
 
 // 4、(服务端网络请求request).pipe(文件复制目标文件) [正确，post请求]
 // const server2 = http.createServer()
@@ -92,12 +98,12 @@ server2.on('request',(req,res)=>{
 //     res.end('收到数据')
 // }).listen(8889)
 
-// 5、(服务端网络请求request).pipe(process.stdin)) [正确，post请求]
-// const server2 = http.createServer()
-// server2.on('request',(req,res)=>{
-//     req.pipe(process.stdin)
-//     res.end('收到数据')
-// }).listen(8889)
+// 5、(服务端网络请求request).pipe(process.stdout)) [正确，post请求]
+// const server2 = http.createServer();
+// server2.on('request', (req, res) => {
+//   req.pipe(process.stdout);
+//   res.end('收到数据');
+// }).listen(8889);
 
 // 6、(文件复制源文件).pipe(服务端网络响应response) [正确]
 // const server2 = http.createServer()
@@ -105,17 +111,17 @@ server2.on('request',(req,res)=>{
 //     fs.createReadStream('./_data_.file').pipe(res)
 // }).listen(8889)
 
-// 7、(文件复制源文件).pipe(process.stdin) [正确！！！]
-//  fs.createReadStream('_data_.file').pipe(process.stdin)
+// 7、(文件复制源文件).pipe(process.stdout) [正确！！！]
+// fs.createReadStream('_data_.file').pipe(process.stdout);
 
-// 8、(process.stdout).pipe(服务端网络响应response) [无法暂停输入！！]
-// const server2 = http.createServer()
-// server2.on('request',(req,res)=>{
-//     process.stdout.pipe(res)
-// }).listen(8889)
+// 8、(process.stdin).pipe(服务端网络响应response) [无法暂停输入！！]
+// const server2 = http.createServer();
+// server2.on('request', (req, res) => {
+//   process.stdin.pipe(res);
+// }).listen(8889);
 
-// 9、(process.stdout).pipe(文件复制目标文件) [正确]
-// process.stdout.pipe(fs.createWriteStream('./_stdout_.file'))
+// 9、(process.stdin).pipe(文件复制目标文件) [正确]
+// process.stdin.pipe(fs.createWriteStream('./_stdout_.file'));
 
  ```
  ![Post](https://robin2017.github.io/node-notes/images/post_stream.jpg)
