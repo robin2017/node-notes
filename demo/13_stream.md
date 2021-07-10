@@ -146,6 +146,6 @@ fs.createWriteStream('_copy2_.file').end(fs.readFileSync('_data_.file'))
  // 2-1、(文件复制源文件).pipe(文件复制目标文件) 
 fs.createReadStream('_data_.file').pipe(fs.createWriteStream('_copy_.file'))
 ```
-// 2-3、可以看进度
+可以看进度
 [code](https://github.com/robin2017/node-notes/blob/main/src/stream/read_progress.js)
  
