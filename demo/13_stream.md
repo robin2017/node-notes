@@ -33,18 +33,22 @@ order: 13
     + on('pipe',cbFun)
     + on('close',cbFun)
     + on('finish',cbFun)
-    + write()
-    + end()
+    + on('drain',cbFun)：部分写入完成(用于通知readStream继续读)
+    + write()：写数据(此时需要停止读)
+    + end()：必须手动结束
 + ReadStream
-    + on('data',cbFun)
+    + on('data',cbFun) ：监听时内部会开启数据传输
     + on('open',cbFun)
     + on('close',cbFun)
-    + on('end',cbFun)
+    + on('end',cbFun)：读完了所有(用于通知writeStream结束)
     + pipe(WriteStream)
     + read()
- 
+    + pause()：暂停读(写数据的时候)
+    + resume()：继续读(部分写入完成)
+
+
 ![常见接口,控制台反了](https://robin2017.github.io/node-notes/images/all_stream.jpg)
- #### 使用场景
+ #### 流使用场景
  + 大文件操作
  + 网络请求
 
@@ -117,7 +121,7 @@ server2.on('request',(req,res)=>{
  ![Post](https://robin2017.github.io/node-notes/images/post_stream.jpg)
 
 
- #### pipe和非pipe方式差别
+ #### 流和非流方式差别
  ```
  // 1-1、(文件复制源文件).pipe(服务端网络响应response)  
 const server2 = http.createServer()
@@ -135,7 +139,13 @@ server3.on('request',(req,res)=>{
 fs.createReadStream('_data_.file').pipe(fs.createWriteStream('_copy_.file'))
 // 2-1、(文件复制目标文件).end(数据) 
 fs.createWriteStream('_copy2_.file').end(fs.readFileSync('_data_.file'))
-// 2-3、可以看进度
-// xxx
  ```
+ #### pipe和非pipe差别
+ > pipe没法查看进度
+```
+ // 2-1、(文件复制源文件).pipe(文件复制目标文件) 
+fs.createReadStream('_data_.file').pipe(fs.createWriteStream('_copy_.file'))
+```
+// 2-3、可以看进度
+[code](https://github.com/robin2017/node-notes/blob/main/src/stream/read_progress.js)
  
